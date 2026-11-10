@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<title>Kochi Free Day Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Great+Vibes&display=swap">
+<style>
+/* Layout: a letterpress invite continued on screen — paper ground, script headings,
+   one column of place "cards" each led by a swipeable photo strip; map + filters up top. */
+:root {
+  --paper: #f3f1ec;
+  --card: #fbfaf6;
+  --ink: #6e4220;
+  --ink-soft: #8a6646;
+  --red: #c40a10;
+  --gold: #b8800f;
+  --line: rgba(110, 66, 32, 0.18);
+  --shadow: rgba(90, 60, 30, 0.16);
+  --font-script: "Great Vibes", "Snell Roundhand", "Apple Chancery", cursive;
+  --font-caps: "Cinzel", "Trajan Pro", "Times New Roman", serif;
+  --font-body: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body {
+  background: var(--paper) url("assets/paper.jpg") repeat;
+  background-size: 600px auto;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.5;
+}
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 4px; }
+
+.caps { font-family: var(--font-caps); text-transform: uppercase; letter-spacing: 0.16em; font-weight: 600; }
+.script { font-family: var(--font-script); font-weight: 400; color: var(--red); line-height: 1.05; }
+.orn { width: 22px; height: auto; margin: 0 auto; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; text-align: center; overflow: hidden; }
+.hero .floral { position: absolute; top: 0; width: clamp(84px, 20vw, 170px); pointer-events: none; }
+.hero .floral.l { left: 0; }
+.hero .floral.r { right: 0; }
+.hero-text { position: relative; padding-block: 56px 18px; display: grid; gap: 14px; justify-items: center; }
+.hero .date { color: var(--gold); font-size: 13px; }
+.hero h1 { font-size: clamp(52px, 13vw, 92px); margin: 0; text-wrap: balance; }
+.hero .lede { color: var(--gold); font-family: var(--font-caps); font-size: 12.5px; letter-spacing: 0.12em; line-height: 1.9; text-transform: uppercase; max-width: 34em; margin: 0; }
+.hero-art { width: 100%; max-width: 560px; margin: 0 auto; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16%); mask-image: linear-gradient(to bottom, transparent 0, #000 16%); }
+
+/* ---------- section heads ---------- */
+.sec-head { text-align: center; display: grid; gap: 8px; justify-items: center; padding-block: 48px 22px; }
+.sec-head .eyebrow { color: var(--gold); font-size: 12.5px; }
+.sec-head h2 { font-size: clamp(46px, 10vw, 66px); margin: 0; }
+.sec-head p { margin: 0; color: var(--ink-soft); font-style: italic; max-width: 32em; }
+
+/* ---------- map ---------- */
+.map-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.tab {
+  border: 1px solid var(--line); background: var(--card); border-radius: 999px;
+  padding: 7px 16px; cursor: pointer; font-family: var(--font-caps); font-size: 11.5px;
+  letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--ink-soft);
+}
+.tab[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: #fff8f0; }
+.map {
+  position: relative; border-radius: 6px; overflow: hidden;
+  border: 10px solid var(--card); box-shadow: 0 10px 28px var(--shadow);
+}
+.map img { width: 100%; height: auto; }
+.pin {
+  position: absolute; transform: translate(-50%, -100%); background: none; border: 0; padding: 0;
+  cursor: pointer; display: flex; flex-direction: column; align-items: center;
+}
+.pin .dot {
+  width: 22px; height: 22px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+  background: var(--red); border: 2px solid #fff8f0; box-shadow: 0 2px 6px rgba(60, 30, 10, 0.35);
+}
+.pin.stay .dot { background: var(--gold); }
+.pin .lbl {
+  position: absolute; bottom: 4px; white-space: nowrap; font-family: var(--font-caps); font-weight: 700;
+  font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);
+  background: rgba(251, 250, 246, 0.94); padding: 3px 7px; border-radius: 3px; box-shadow: 0 1px 4px rgba(60, 30, 10, 0.2);
+}
+.pin .lbl.right { left: 20px; }
+.pin .lbl.left { right: 20px; }
+.pin:hover .lbl, .pin:focus-visible .lbl { color: var(--red); }
+.map-note { text-align: center; font-size: 15px; color: var(--ink-soft); font-style: italic; margin: 12px 0 0; }
+.legend { display: flex; justify-content: center; gap: 18px; font-size: 15px; color: var(--ink-soft); margin-top: 6px; flex-wrap: wrap; }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; background: var(--red); }
+.legend span.stay::before { background: var(--gold); }
+
+/* ---------- filters ---------- */
+.filters {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: rgba(243, 241, 236, 0.94); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line); margin-top: 40px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--paper); }
+.filters .wrap { display: flex; gap: 8px; overflow-x: auto; padding-block: 10px; scrollbar-width: none; }
+.filters .wrap::-webkit-scrollbar { display: none; }
+.filters .tab { flex: 0 0 auto; }
+
+/* ---------- place cards ---------- */
+.places { display: grid; gap: 64px; padding-block: 36px 24px; }
+.place { scroll-margin-top: 72px; }
+.place-head { text-align: center; display: grid; gap: 6px; justify-items: center; margin-bottom: 16px; }
+.place-head .eyebrow { color: var(--gold); font-size: 11.5px; }
+.place-head h3 { font-size: clamp(44px, 10vw, 60px); margin: 0; }
+.place-head .area { color: var(--ink-soft); font-size: 12.5px; letter-spacing: 0.2em; }
+
+.gallery { position: relative; }
+.strip {
+  display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+  border-radius: 4px; overscroll-behavior-x: contain;
+}
+.strip::-webkit-scrollbar { display: none; }
+.strip button {
+  flex: 0 0 100%; scroll-snap-align: center; border: 0; padding: 0; background: var(--card);
+  cursor: zoom-in; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 4px;
+  box-shadow: 0 0 0 8px var(--card), 0 10px 26px var(--shadow); margin: 8px 0 20px;
+}
+.strip img { width: 100%; height: 100%; object-fit: cover; }
+.strip button:first-child { margin-left: 8px; }
+.strip button:last-child { margin-right: 8px; }
+.strip button { flex-basis: calc(100% - 16px); }
+.g-nav {
+  position: absolute; top: calc(50% - 10px); transform: translateY(-50%); width: 40px; height: 40px;
+  border-radius: 50%; border: 0; background: rgba(251, 250, 246, 0.92); color: var(--red);
+  font-size: 22px; line-height: 1; cursor: pointer; box-shadow: 0 2px 8px rgba(60, 30, 10, 0.25);
+  display: grid; place-items: center;
+}
+.g-nav.prev { left: 16px; }
+.g-nav.next { right: 16px; }
+.g-nav[disabled] { opacity: 0; pointer-events: none; }
+.g-count {
+  position: absolute; right: 18px; bottom: 30px; font-family: var(--font-caps); font-size: 11px; letter-spacing: 0.1em;
+  background: rgba(40, 24, 12, 0.6); color: #fff8f0; padding: 3px 9px; border-radius: 999px; font-variant-numeric: tabular-nums;
+}
+.dots { display: flex; justify-content: center; gap: 6px; margin-top: -6px; }
+.dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--line); }
+.dots i.on { background: var(--red); }
+
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 4px; }
+.chip {
+  font-size: 15px; font-weight: 600; padding: 3px 12px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--card); color: var(--ink-soft);
+}
+.chip.warn { border-color: rgba(196, 10, 16, 0.35); color: var(--red); }
+.blurb { text-align: center; font-size: 21px; font-weight: 600; max-width: 32em; margin: 10px auto 0; text-wrap: pretty; }
+.actions { display: flex; justify-content: center; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; text-decoration: none; padding: 10px 18px; border-radius: 999px;
+  font-family: var(--font-caps); font-weight: 700; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1px solid var(--red); color: var(--red); background: transparent;
+}
+.btn.solid { background: var(--red); color: #fff8f0; }
+.btn svg { width: 15px; height: 15px; }
+.place[hidden] { display: none; }
+.empty { text-align: center; font-style: italic; color: var(--ink-soft); }
+
+/* ---------- closing ---------- */
+.closing { text-align: center; display: grid; gap: 14px; justify-items: center; padding-block: 40px 20px; }
+.closing h2 { font-size: clamp(44px, 10vw, 64px); margin: 0; }
+.closing p { margin: 0; font-style: italic; font-size: 21px; max-width: 30em; }
+.closing .sig { color: var(--gold); font-size: 13px; }
+.band { width: 100%; height: auto; margin-top: 12px; }
+.credit { text-align: center; font-size: 13px; color: var(--ink-soft); padding-block: 8px 20px; }
+.credit a { color: inherit; }
+
+/* ---------- lightbox ---------- */
+.lb { position: fixed; inset: 0; z-index: 50; background: rgba(28, 18, 10, 0.94); display: grid; place-items: center; }
+.lb img { max-width: 94vw; max-height: 80vh; object-fit: contain; border-radius: 3px; }
+.lb .cap {
+  position: absolute; left: 0; right: 0; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); text-align: center;
+  color: #f3e9da; font-family: var(--font-caps); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.lb button { position: absolute; border: 0; background: rgba(255, 248, 240, 0.12); color: #fff8f0; width: 46px; height: 46px; border-radius: 50%; font-size: 24px; cursor: pointer; display: grid; place-items: center; }
+.lb .x { top: calc(14px + env(safe-area-inset-top, 0px)); right: max(14px, env(safe-area-inset-right, 0px)); }
+.lb .p { left: max(10px, env(safe-area-inset-left, 0px)); top: 50%; transform: translateY(-50%); }
+.lb .n { right: max(10px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); }
+
+@media (min-width: 700px) {
+  .strip button { flex-basis: calc(100% - 16px); }
+  .hero-text { padding-top: 72px; }
+}
+</style>
+</head>
+<body>
+
+
+<header class="hero">
+  <img class="floral l" src="assets/floral_l.webp" alt="">
+  <img class="floral r" src="assets/floral_r.webp" alt="">
+  <div class="wrap hero-text">
+    <div class="date caps">Saturday · 14 November 2026 · Free Day</div>
+    <img class="orn" src="assets/orn.webp" alt="">
+    <h1 class="script">Your little guide to Kochi</h1>
+    <img class="orn" src="assets/orn.webp" alt="">
+    <p class="lede">A day between celebrations.<br>Slow mornings, sunny strolls, the little corners of Kochi,<br>and the simple joy of having nowhere to be.</p>
+  </div>
+  <img class="hero-art" src="assets/hero.jpg" alt="Watercolour of a Kochi waterfront with palms, a bicycle and cane chairs, from the wedding invite">
+</header>
+
+<main>
+  <section class="wrap" aria-labelledby="map-h">
+    <div class="sec-head">
+      <div class="eyebrow caps">Where everything is</div>
+      <h2 id="map-h" class="script">The Map</h2>
+      <p>Tap a pin to jump to that place.</p>
+    </div>
+    <div class="map-tabs" role="group" aria-label="Map view">
+      <button class="tab" id="tab-city" aria-pressed="true">All of Kochi</button>
+      <button class="tab" id="tab-fk" aria-pressed="false">Fort Kochi close-up</button>
+    </div>
+    <div class="map" id="map-city">
+      <img src="assets/map.jpg" alt="Map of Kochi showing the guide's places and the two wedding hotels" width="1103" height="1337">
+    </div>
+    <div class="map" id="map-fk" hidden>
+      <img src="assets/map_fk.jpg" alt="Close-up map of Fort Kochi and Mattancherry" width="1115" height="780">
+    </div>
+    <div class="legend"><span>Places in this guide</span><span class="stay">Wedding hotels</span></div>
+    <p class="map-note" id="map-note">Fort Kochi, Jew Town, Seagull, Francis and French Toast are all within a short walk of each other.</p>
+  </section>
+
+  <nav class="filters" aria-label="Filter places">
+    <div class="wrap" role="group" id="filters"></div>
+  </nav>
+
+  <div class="wrap places" id="places"></div>
+  <p class="wrap empty" id="empty" hidden>Nothing here for that filter.</p>
+
+  <section class="wrap closing">
+    <img class="orn" src="assets/orn.webp" alt="">
+    <h2 class="script">Queen of the Arabian Sea</h2>
+    <p>For centuries, spice traders, Chinese fishermen, the Portuguese, Dutch and British, and one of India’s oldest Jewish communities have all called Kochi home, and left a little of themselves behind. Wander slowly, eat well, and let the city tell you its stories.</p>
+    <div class="sig caps">With love, Aishwarya &amp; Ishan</div>
+  </section>
+  <img class="band" src="assets/band.webp" alt="">
+  <p class="credit">Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</p>
+</main>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <img id="lb-img" alt="">
+  <button class="x" id="lb-x" aria-label="Close">×</button>
+  <button class="p" id="lb-p" aria-label="Previous photo">‹</button>
+  <button class="n" id="lb-n" aria-label="Next photo">›</button>
+  <div class="cap" id="lb-cap"></div>
+</div>
+
+<script>
+const MAP = {"pos": {"hotel": [70.85, 92.95], "meridien": [91.55, 88.26], "fortkochi": [10.4, 61.99], "jewtown": [28.49, 71.47], "smoke": [87.12, 13.16], "seagull": [18.71, 61.3], "francis": [9.84, 64.49], "frenchtoast": [8.5, 63.11], "grand": [56.12, 59.6], "paragon": [82.55, 7.12]}, "pos_fk": {"fortkochi": [18.0, 19.9], "jewtown": [89.59, 84.87], "seagull": [50.89, 15.17], "francis": [15.78, 37.07], "frenchtoast": [10.51, 27.61]}};
+const PHOTOS = {"fortkochi": [{"src": "assets/photos/fortkochi_0.webp", "w": 1400, "h": 1050}, {"src": "assets/photos/fortkochi_1.webp", "w": 1400, "h": 928}, {"src": "assets/photos/fortkochi_2.webp", "w": 1400, "h": 1391}, {"src": "assets/photos/fortkochi_3.webp", "w": 1051, "h": 1400}, {"src": "assets/photos/fortkochi_4.webp", "w": 1400, "h": 822}, {"src": "assets/photos/fortkochi_5.webp", "w": 1400, "h": 933}, {"src": "assets/photos/fortkochi_6.webp", "w": 1400, "h": 630}], "jewtown": [{"src": "assets/photos/jewtown_0.webp", "w": 1400, "h": 1050}, {"src": "assets/photos/jewtown_1.webp", "w": 933, "h": 1400}, {"src": "assets/photos/jewtown_2.webp", "w": 1400, "h": 987}, {"src": "assets/photos/jewtown_3.webp", "w": 1400, "h": 933}, {"src": "assets/photos/jewtown_4.webp", "w": 1400, "h": 933}, {"src": "assets/photos/jewtown_5.webp", "w": 1400, "h": 886}], "smoke": [{"src": "assets/photos/smoke_0.webp", "w": 790, "h": 1400}, {"src": "assets/photos/smoke_1.webp", "w": 974, "h": 1400}, {"src": "assets/photos/smoke_2.webp", "w": 1400, "h": 1050}], "seagull": [{"src": "assets/photos/seagull_0.webp", "w": 1400, "h": 1050}, {"src": "assets/photos/seagull_1.webp", "w": 1400, "h": 1050}, {"src": "assets/photos/seagull_2.webp", "w": 1400, "h": 1050}, {"src": "assets/photos/seagull_3.webp", "w": 1400, "h": 1050}, {"src": "assets/photos/seagull_4.webp", "w": 765, "h": 1020}, {"src": "assets/photos/seagull_5.webp", "w": 765, "h": 1020}, {"src": "assets/photos/seagull_6.webp", "w": 1360, "h": 1020}, {"src": "assets/photos/seagull_7.webp", "w": 1360, "h": 1020}, {"src": "assets/photos/seagull_8.webp", "w": 1400, "h": 1050}], "francis": [{"src": "assets/photos/francis_0.webp", "w": 1360, "h": 1020}, {"src": "assets/photos/francis_1.webp", "w": 765, "h": 945}, {"src": "assets/photos/francis_2.webp", "w": 512, "h": 512}, {"src": "assets/photos/francis_3.webp", "w": 512, "h": 512}, {"src": "assets/photos/francis_4.webp", "w": 512, "h": 512}, {"src": "assets/photos/francis_5.webp", "w": 512, "h": 512}, {"src": "assets/photos/francis_6.webp", "w": 512, "h": 512}], "frenchtoast": [{"src": "assets/photos/frenchtoast_0.webp", "w": 765, "h": 1020}, {"src": "assets/photos/frenchtoast_1.webp", "w": 765, "h": 1020}, {"src": "assets/photos/frenchtoast_2.webp", "w": 765, "h": 1020}, {"src": "assets/photos/frenchtoast_3.webp", "w": 750, "h": 1000}, {"src": "assets/photos/frenchtoast_4.webp", "w": 1050, "h": 1400}, {"src": "assets/photos/frenchtoast_5.webp", "w": 680, "h": 453}, {"src": "assets/photos/frenchtoast_6.webp", "w": 680, "h": 453}, {"src": "assets/photos/frenchtoast_7.webp", "w": 750, "h": 1000}, {"src": "assets/photos/frenchtoast_8.webp", "w": 720, "h": 719}], "grand": [{"src": "assets/photos/grand_0.webp", "w": 1400, "h": 943}, {"src": "assets/photos/grand_1.webp", "w": 1280, "h": 853}, {"src": "assets/photos/grand_2.webp", "w": 1040, "h": 780}, {"src": "assets/photos/grand_3.webp", "w": 1400, "h": 933}, {"src": "assets/photos/grand_4.webp", "w": 1200, "h": 700}, {"src": "assets/photos/grand_5.webp", "w": 830, "h": 540}, {"src": "assets/photos/grand_6.webp", "w": 1280, "h": 853}, {"src": "assets/photos/grand_7.webp", "w": 1400, "h": 1050}], "paragon": [{"src": "assets/photos/paragon_0.webp", "w": 1400, "h": 965}, {"src": "assets/photos/paragon_1.webp", "w": 1243, "h": 1400}, {"src": "assets/photos/paragon_2.webp", "w": 1280, "h": 848}, {"src": "assets/photos/paragon_3.webp", "w": 1200, "h": 800}, {"src": "assets/photos/paragon_4.webp", "w": 1400, "h": 860}, {"src": "assets/photos/paragon_5.webp", "w": 972, "h": 1296}, {"src": "assets/photos/paragon_6.webp", "w": 1400, "h": 860}], "ghee": [{"src": "assets/photos/ghee_0.webp", "w": 1400, "h": 1050}, {"src": "assets/photos/ghee_1.webp", "w": 683, "h": 512}], "kayak": [{"src": "assets/photos/kayak_0.webp", "w": 1400, "h": 856}, {"src": "assets/photos/kayak_1.webp", "w": 1400, "h": 941}, {"src": "assets/photos/kayak_2.webp", "w": 1400, "h": 1050}, {"src": "assets/photos/kayak_3.webp", "w": 1050, "h": 1400}, {"src": "assets/photos/kayak_4.webp", "w": 1400, "h": 629}, {"src": "assets/photos/kayak_5.webp", "w": 1400, "h": 887}, {"src": "assets/photos/kayak_6.webp", "w": 1400, "h": 933}]};
+const PIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+const EXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
+const gq = q => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
+
+const PLACES = [
+  { id: 'fortkochi', tags: ['wander', 'fk'], eyebrow: 'Places to hang out at', name: 'Fort Kochi', area: 'Old harbour quarter',
+    chips: ['Best at sunset', 'Great on a bicycle'],
+    text: 'Colonial lanes, old churches, cafés and the Chinese fishing nets on the water. Come back here for sunset.',
+    maps: gq('Chinese Fishing Nets, Fort Kochi'), pin: 'Fort Kochi', side: 'right' },
+  { id: 'jewtown', tags: ['wander', 'fk'], eyebrow: 'Places to hang out at', name: 'Jew Town', area: 'Mattancherry',
+    chips: ['Antiques & spice shops', { t: 'Synagogue closed Saturdays', warn: true }],
+    text: 'Walking distance from Fort Kochi.',
+    maps: gq('Jew Town, Mattancherry, Kochi'), pin: 'Jew Town', side: 'left' },
+  { id: 'kayak', tags: ['do'], eyebrow: 'Things to do', name: 'Mangrove Kayaking', area: 'Kumbalangi · Kadamakkudy',
+    chips: ['Early morning is best', 'About 2 hours', 'Guided trips, gear included'],
+    text: 'Paddle through quiet mangrove channels and village backwaters, past Chinese nets, paddy fields and plenty of birds. Go early, before the heat; local operators run guided trips with everything you need.',
+    maps: gq('Mangrove kayaking Kumbalangi, Kochi') },
+  { id: 'smoke', tags: ['eat'], eyebrow: 'For food · highly recommended, personally', name: 'Smoke Culture', area: 'Thrikkakara',
+    chips: ['₹1,200 for two', 'Evenings from 5 pm', 'BBQ & smoked meats'],
+    text: 'For some amazing, insanely high quality meats and barbecue. Literally my favourite food place in Kochi, I never miss this! Oh, don’t miss out on their fancy canned drinks.',
+    maps: gq('Smoke Culture by Steve, Thrikkakara, Kochi'), zomato: 'https://www.zomato.com/kochi/smoke-culture-by-steve-ernakulam-city', pin: 'Smoke Culture', side: 'left' },
+  { id: 'seagull', tags: ['eat', 'drinks', 'fk'], eyebrow: 'For food · highly recommended, personally', name: 'Seagull', area: 'Fort Kochi',
+    chips: ['₹1,000 for two', 'Beer', 'On the water', 'Best at sunset'],
+    text: 'Spend the day in the neighbourhood exploring the various cafes and museums, but come back here in the evening for some REALLY high quality seafood and vibes. Get the dishes in the chatti (the South Indian kadhai) + chilled 🍻',
+    maps: gq('Hotel Seagull, Calvathy Road, Fort Kochi'), zomato: 'https://www.zomato.com/kochi/hotel-seagull-fort-kochi', pin: 'Seagull', side: 'right' },
+  { id: 'francis', tags: ['eat', 'drinks', 'fk'], eyebrow: 'For food · highly recommended, personally', name: 'Francis', area: 'Fort Kochi',
+    chips: ['₹1,700 for two', 'Beer & wine', 'Karaoke'],
+    text: 'For their karaoke, wonderful curation of seafood, meats and vibes. Do try out their sausage basket!',
+    maps: gq('Francis, Quiero Street, Fort Kochi'), zomato: 'https://www.zomato.com/kochi/francis-1-fort-kochi', pin: 'Francis', side: 'right' },
+  { id: 'frenchtoast', tags: ['eat', 'cafe', 'fk'], eyebrow: 'For food · highly recommended, personally', name: 'French Toast', area: 'Fort Kochi',
+    chips: ['₹1,200 for two', 'Breakfast & coffee', 'Garden seating'],
+    text: 'An artsy, spacious, hipster café right by the water, with wonderful fresh ingredients. Perfect for a slow breakfast or a coffee break between wanders.',
+    maps: gq('French Toast, Fort Kochi'), zomato: 'https://www.zomato.com/kochi/french-toast-fort-kochi', pin: 'French Toast', side: 'left' },
+  { id: 'grand', tags: ['eat'], eyebrow: 'For food · highly recommended, personally', name: 'The Grand Hotel', area: 'MG Road, Ernakulam',
+    chips: ['₹1,400 for two', 'Kerala classics', 'Heritage dining room'],
+    text: 'Quite a heritage place. Those who know about it know the quality of their cuisine. Get the mutton biryani / fish pollichathu.',
+    maps: gq('Grand Pavilion, The Grand Hotel, MG Road, Kochi'), zomato: 'https://www.zomato.com/kochi/grand-pavillion-by-grand-hotel-mg-road', pin: 'The Grand', side: 'right' },
+  { id: 'paragon', tags: ['eat'], eyebrow: 'For food · highly recommended, personally', name: 'Paragon', area: 'Edappally',
+    chips: ['₹1,100 for two', 'Malabar & seafood'],
+    text: 'Specifically the mango fish curry. The veg mango slaps too! (Even though it’s in Bangalore too, it was established in Kerala.)',
+    maps: gq('Paragon Restaurant, Edappally, Kochi'), zomato: 'https://www.zomato.com/kochi/paragon-edappally', pin: 'Paragon', side: 'left' },
+  { id: 'ghee', tags: ['eat', 'cafe'], eyebrow: 'And wherever you go', name: 'Ghee Roast + Kaapi', area: 'Any good South Indian spot',
+    chips: ['Breakfast', 'Anywhere, any time'],
+    text: 'Wherever you go, a Ghee Roast is a must!!! With a filter kaapi (coffee).' }
+];
+const STAYS = [
+  { id: 'hotel', label: 'Keys Select · friends', side: 'left' },
+  { id: 'meridien', label: 'Le Méridien · family', side: 'left' }
+];
+const FILTERS = [
+  ['all', 'All'], ['wander', 'Wander'], ['do', 'Things to do'], ['eat', 'Eat'], ['drinks', 'Beer & vibes'], ['cafe', 'Café & coffee'], ['fk', 'In Fort Kochi']
+];
+
+const $ = s => document.querySelector(s);
+const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+/* ---- place cards ---- */
+const placesEl = $('#places');
+PLACES.forEach(p => {
+  const art = el('article', 'place'); art.id = p.id; art.dataset.tags = p.tags.join(' ');
+  const head = el('div', 'place-head');
+  head.innerHTML = `<div class="eyebrow caps">${esc(p.eyebrow)}</div><h3 class="script">${esc(p.name)}</h3><div class="area caps">${esc(p.area)}</div>`;
+  art.appendChild(head);
+
+  const photos = PHOTOS[p.id] || [];
+  const gal = el('div', 'gallery');
+  const strip = el('div', 'strip'); strip.setAttribute('aria-label', p.name + ' photos');
+  photos.forEach((ph, i) => {
+    const b = el('button'); b.type = 'button'; b.setAttribute('aria-label', `Open photo ${i + 1} of ${photos.length}`);
+    const im = new Image(); im.src = ph.src; im.alt = `${p.name}, photo ${i + 1}`; im.loading = i === 0 ? 'eager' : 'lazy'; im.width = ph.w; im.height = ph.h;
+    b.appendChild(im); b.addEventListener('click', () => openLB(p, i));
+    strip.appendChild(b);
+  });
+  gal.appendChild(strip);
+  if (photos.length > 1) {
+    const prev = el('button', 'g-nav prev', '‹'); prev.setAttribute('aria-label', 'Previous photo');
+    const next = el('button', 'g-nav next', '›'); next.setAttribute('aria-label', 'Next photo');
+    const count = el('div', 'g-count');
+    const dots = el('div', 'dots'); photos.forEach(() => dots.appendChild(el('i')));
+    gal.append(prev, next, count);
+    const idx = () => Math.round(strip.scrollLeft / (strip.firstElementChild.getBoundingClientRect().width + 10));
+    const go = d => { const w = strip.firstElementChild.getBoundingClientRect().width + 10; strip.scrollBy({ left: d * w, behavior: 'smooth' }); };
+    prev.onclick = () => go(-1); next.onclick = () => go(1);
+    const sync = () => {
+      const i = Math.min(photos.length - 1, Math.max(0, idx()));
+      count.textContent = `${i + 1} / ${photos.length}`;
+      [...dots.children].forEach((d, j) => d.classList.toggle('on', j === i));
+      prev.disabled = i === 0; next.disabled = i === photos.length - 1;
+    };
+    strip.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
+    art.appendChild(gal); art.appendChild(dots); requestAnimationFrame(sync);
+  } else art.appendChild(gal);
+
+  const chips = el('div', 'chips');
+  p.chips.forEach(c => { const o = typeof c === 'string' ? { t: c } : c; chips.appendChild(el('span', 'chip' + (o.warn ? ' warn' : ''), esc(o.t))); });
+  art.appendChild(chips);
+  art.appendChild(el('p', 'blurb', esc(p.text)));
+  if (p.maps || p.zomato) {
+    const acts = el('div', 'actions');
+    if (p.maps) acts.innerHTML += `<a class="btn solid" href="${p.maps}" target="_blank" rel="noopener">${PIN}Take me there</a>`;
+    if (p.zomato) acts.innerHTML += `<a class="btn" href="${p.zomato}" target="_blank" rel="noopener">${EXT}Menu on Zomato</a>`;
+    art.appendChild(acts);
+  }
+  placesEl.appendChild(art);
+});
+
+/* ---- filters ---- */
+const fWrap = $('#filters');
+let current = 'all';
+try { const s = localStorage.getItem('kochi-filter'); if (s && FILTERS.some(f => f[0] === s)) current = s; } catch (e) {}
+FILTERS.forEach(([k, label]) => {
+  const b = el('button', 'tab', label); b.type = 'button'; b.dataset.k = k;
+  b.onclick = () => { current = k; applyFilter(); try { localStorage.setItem('kochi-filter', k); } catch (e) {} };
+  fWrap.appendChild(b);
+});
+function applyFilter() {
+  let shown = 0;
+  document.querySelectorAll('.place').forEach(a => {
+    const on = current === 'all' || a.dataset.tags.split(' ').includes(current);
+    a.hidden = !on; if (on) shown++;
+  });
+  fWrap.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.k === current)));
+  $('#empty').hidden = shown > 0;
+}
+applyFilter();
+
+/* ---- map ---- */
+function addPin(container, pos, label, side, cls, onClick) {
+  const b = el('button', 'pin' + (cls ? ' ' + cls : '')); b.type = 'button';
+  b.style.left = pos[0] + '%'; b.style.top = pos[1] + '%';
+  b.innerHTML = `<span class="dot"></span><span class="lbl ${side}">${esc(label)}</span>`;
+  b.setAttribute('aria-label', label); b.onclick = onClick; container.appendChild(b);
+}
+function jump(id) {
+  const a = document.getElementById(id); if (!a) return;
+  if (a.hidden) { current = 'all'; applyFilter(); }
+  a.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+}
+const city = $('#map-city'), fk = $('#map-fk');
+['smoke', 'paragon', 'grand'].forEach(id => { const p = PLACES.find(x => x.id === id); addPin(city, MAP.pos[id], p.pin, p.side, '', () => jump(id)); });
+STAYS.forEach(s => addPin(city, MAP.pos[s.id], s.label, s.side, 'stay', () => {}));
+const fkc = ['fortkochi', 'jewtown', 'seagull', 'francis', 'frenchtoast'].map(k => MAP.pos[k]);
+const cx = fkc.reduce((a, p) => a + p[0], 0) / fkc.length, cy = fkc.reduce((a, p) => a + p[1], 0) / fkc.length;
+addPin(city, [cx, cy], 'Fort Kochi · 5 spots', 'right', '', () => showMap('fk'));
+['fortkochi', 'jewtown', 'seagull', 'francis', 'frenchtoast'].forEach(id => {
+  const p = PLACES.find(x => x.id === id); addPin(fk, MAP.pos_fk[id], p.pin, p.side, '', () => jump(id));
+});
+function showMap(which) {
+  city.hidden = which !== 'city'; fk.hidden = which !== 'fk';
+  $('#tab-city').setAttribute('aria-pressed', String(which === 'city'));
+  $('#tab-fk').setAttribute('aria-pressed', String(which === 'fk'));
+}
+$('#tab-city').onclick = () => showMap('city');
+$('#tab-fk').onclick = () => showMap('fk');
+
+/* ---- lightbox ---- */
+const lb = $('#lb'), lbImg = $('#lb-img'), lbCap = $('#lb-cap');
+let lbPlace = null, lbI = 0, lastFocus = null;
+function renderLB() {
+  const ph = PHOTOS[lbPlace.id][lbI];
+  lbImg.src = ph.src; lbImg.alt = `${lbPlace.name}, photo ${lbI + 1}`;
+  lbCap.textContent = `${lbPlace.name} · ${lbI + 1} / ${PHOTOS[lbPlace.id].length}`;
+}
+function openLB(p, i) { lastFocus = document.activeElement; lbPlace = p; lbI = i; renderLB(); lb.hidden = false; document.body.style.overflow = 'hidden'; $('#lb-x').focus(); }
+function closeLB() { lb.hidden = true; document.body.style.overflow = ''; if (lastFocus) lastFocus.focus(); }
+function stepLB(d) { const n = PHOTOS[lbPlace.id].length; lbI = (lbI + d + n) % n; renderLB(); }
+$('#lb-x').onclick = closeLB; $('#lb-p').onclick = () => stepLB(-1); $('#lb-n').onclick = () => stepLB(1);
+lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+document.addEventListener('keydown', e => {
+  if (lb.hidden) return;
+  if (e.key === 'Escape') closeLB(); else if (e.key === 'ArrowLeft') stepLB(-1); else if (e.key === 'ArrowRight') stepLB(1);
+});
+let tx = null;
+lb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener('touchend', e => { if (tx == null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 40) stepLB(dx < 0 ? 1 : -1); tx = null; });
+</script>
+
+</body>
+</html>
