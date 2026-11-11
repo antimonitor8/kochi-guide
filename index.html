@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
 <title>Kochi Free Day Guide</title>
+<meta name="robots" content="noindex, nofollow">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -181,6 +182,29 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .credit { text-align: center; font-size: 13px; color: var(--ink-soft); padding-block: 8px 20px; }
 .credit a { color: inherit; }
 
+/* ---------- our polaroids ---------- */
+.place.has-ours { --pw: clamp(138px, 36vw, 196px); }
+.place.has-ours .g-count { right: auto; left: 18px; }
+.place.has-ours .chips { margin-top: calc(var(--pw) * 0.62 + 4px); }
+.ours { position: absolute; right: -6px; bottom: calc(20px - var(--pw) * 0.62); width: var(--pw); z-index: 3; }
+.ours.left { right: auto; left: -6px; }
+.ours.left .pola { transform: rotate(-4deg); }
+.ours.left .pola:hover, .ours.left .pola:focus-visible { transform: rotate(-1deg) scale(1.03); }
+.place.ours-2 .g-count { left: auto; right: 18px; bottom: auto; top: 18px; }
+.pola {
+  position: relative; display: block; width: 100%; border: 0; cursor: zoom-in; text-align: center;
+  background: #fffdf8; padding: 7% 7% 24%; border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(60, 35, 15, 0.18), 0 12px 26px rgba(60, 35, 15, 0.28);
+  transform: rotate(4deg); transition: transform .25s ease;
+}
+.pola img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 1px; filter: saturate(0.92) contrast(1.02); }
+.pola::before {
+  content: ""; position: absolute; top: -9px; left: 50%; width: 44%; height: 20px; transform: translateX(-50%) rotate(-3deg);
+  background: rgba(232, 215, 178, 0.78); box-shadow: 0 1px 2px rgba(60, 35, 15, 0.12);
+}
+.pola:hover, .pola:focus-visible { transform: rotate(1deg) scale(1.03); }
+@media (prefers-reduced-motion: reduce) { .pola { transition: none; } }
+
 /* ---------- lightbox ---------- */
 .lb { position: fixed; inset: 0; z-index: 50; background: rgba(28, 18, 10, 0.94); display: grid; place-items: center; }
 .lb img { max-width: 94vw; max-height: 80vh; object-fit: contain; border-radius: 3px; }
@@ -263,7 +287,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 <script>
 const MAP = {"pos": {"hotel": [70.85, 92.95], "meridien": [91.55, 88.26], "fortkochi": [10.4, 61.99], "jewtown": [28.49, 71.47], "smoke": [87.12, 13.16], "seagull": [18.71, 61.3], "francis": [9.84, 64.49], "frenchtoast": [8.5, 63.11], "grand": [56.12, 59.6], "paragon": [82.55, 7.12], "coz": [23.03, 63.93]}, "pos_fk": {"fortkochi": [18.0, 19.9], "jewtown": [89.59, 84.87], "seagull": [50.89, 15.17], "francis": [15.78, 37.07], "frenchtoast": [10.51, 27.61], "coz": [67.98, 33.19]}};
-const PHOTOS = {"fortkochi": [{"src": "assets/p2/fortkochi_0.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/fortkochi_1.webp", "w": 1400, "h": 1061}, {"src": "assets/p2/fortkochi_2.webp", "w": 1400, "h": 1391}, {"src": "assets/p2/fortkochi_3.webp", "w": 1400, "h": 933}, {"src": "assets/p2/fortkochi_4.webp", "w": 1051, "h": 1400}, {"src": "assets/p2/fortkochi_5.webp", "w": 1400, "h": 933}, {"src": "assets/p2/fortkochi_6.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/fortkochi_7.webp", "w": 1400, "h": 630}], "jewtown": [{"src": "assets/p2/jewtown_0.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/jewtown_1.webp", "w": 933, "h": 1400}, {"src": "assets/p2/jewtown_2.webp", "w": 1400, "h": 987}, {"src": "assets/p2/jewtown_3.webp", "w": 1400, "h": 933}, {"src": "assets/p2/jewtown_4.webp", "w": 1400, "h": 933}, {"src": "assets/p2/jewtown_5.webp", "w": 1400, "h": 886}], "kayak": [{"src": "assets/p2/kayak_0.webp", "w": 1400, "h": 856}, {"src": "assets/p2/kayak_1.webp", "w": 1400, "h": 941}, {"src": "assets/p2/kayak_2.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/kayak_3.webp", "w": 1050, "h": 1400}, {"src": "assets/p2/kayak_4.webp", "w": 1400, "h": 629}, {"src": "assets/p2/kayak_5.webp", "w": 1400, "h": 887}, {"src": "assets/p2/kayak_6.webp", "w": 1400, "h": 933}], "smoke": [{"src": "assets/p2/smoke_0.webp", "w": 407, "h": 444}, {"src": "assets/p2/smoke_1.webp", "w": 407, "h": 444}, {"src": "assets/p2/smoke_2.webp", "w": 407, "h": 444}, {"src": "assets/p2/smoke_3.webp", "w": 790, "h": 1400}, {"src": "assets/p2/smoke_4.webp", "w": 407, "h": 444}, {"src": "assets/p2/smoke_5.webp", "w": 974, "h": 1400}, {"src": "assets/p2/smoke_6.webp", "w": 407, "h": 444}, {"src": "assets/p2/smoke_7.webp", "w": 406, "h": 444}], "seagull": [{"src": "assets/p2/seagull_0.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/seagull_1.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/seagull_2.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/seagull_3.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/seagull_4.webp", "w": 1360, "h": 766}, {"src": "assets/p2/seagull_5.webp", "w": 765, "h": 1020}, {"src": "assets/p2/seagull_6.webp", "w": 765, "h": 1020}, {"src": "assets/p2/seagull_7.webp", "w": 1360, "h": 1020}, {"src": "assets/p2/seagull_8.webp", "w": 1360, "h": 1020}], "francis": [{"src": "assets/p2/francis_0.webp", "w": 1360, "h": 1020}, {"src": "assets/p2/francis_1.webp", "w": 765, "h": 945}, {"src": "assets/p2/francis_2.webp", "w": 512, "h": 512}, {"src": "assets/p2/francis_3.webp", "w": 512, "h": 512}, {"src": "assets/p2/francis_4.webp", "w": 512, "h": 512}, {"src": "assets/p2/francis_5.webp", "w": 512, "h": 512}, {"src": "assets/p2/francis_6.webp", "w": 512, "h": 512}], "frenchtoast": [{"src": "assets/p2/frenchtoast_0.webp", "w": 765, "h": 1020}, {"src": "assets/p2/frenchtoast_1.webp", "w": 765, "h": 1020}, {"src": "assets/p2/frenchtoast_2.webp", "w": 765, "h": 1020}, {"src": "assets/p2/frenchtoast_3.webp", "w": 750, "h": 1000}, {"src": "assets/p2/frenchtoast_4.webp", "w": 1050, "h": 1400}, {"src": "assets/p2/frenchtoast_5.webp", "w": 680, "h": 453}, {"src": "assets/p2/frenchtoast_6.webp", "w": 680, "h": 453}, {"src": "assets/p2/frenchtoast_7.webp", "w": 750, "h": 1000}, {"src": "assets/p2/frenchtoast_8.webp", "w": 720, "h": 719}], "grand": [{"src": "assets/p2/grand_0.webp", "w": 1400, "h": 943}, {"src": "assets/p2/grand_1.webp", "w": 1280, "h": 853}, {"src": "assets/p2/grand_2.webp", "w": 1040, "h": 780}, {"src": "assets/p2/grand_3.webp", "w": 1400, "h": 933}, {"src": "assets/p2/grand_4.webp", "w": 1200, "h": 700}, {"src": "assets/p2/grand_5.webp", "w": 830, "h": 540}, {"src": "assets/p2/grand_6.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/grand_7.webp", "w": 1200, "h": 800}], "paragon": [{"src": "assets/p2/paragon_0.webp", "w": 1400, "h": 965}, {"src": "assets/p2/paragon_1.webp", "w": 1243, "h": 1400}, {"src": "assets/p2/paragon_2.webp", "w": 1280, "h": 848}, {"src": "assets/p2/paragon_3.webp", "w": 1200, "h": 800}, {"src": "assets/p2/paragon_4.webp", "w": 1400, "h": 860}, {"src": "assets/p2/paragon_5.webp", "w": 972, "h": 1296}, {"src": "assets/p2/paragon_6.webp", "w": 1040, "h": 588}], "ghee": [{"src": "assets/p2/ghee_0.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/ghee_1.webp", "w": 683, "h": 512}], "coz": [{"src": "assets/p2/coz_0.webp", "w": 1400, "h": 788}, {"src": "assets/p2/coz_1.webp", "w": 1050, "h": 1400}, {"src": "assets/p2/coz_2.webp", "w": 1400, "h": 788}, {"src": "assets/p2/coz_3.webp", "w": 1050, "h": 1400}, {"src": "assets/p2/coz_4.webp", "w": 1400, "h": 804}, {"src": "assets/p2/coz_5.webp", "w": 1106, "h": 1400}, {"src": "assets/p2/coz_6.webp", "w": 1050, "h": 1400}]};
+const PHOTOS = {"fortkochi": [{"src": "assets/p2/fortkochi_0.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/fortkochi_1.webp", "w": 1400, "h": 1061}, {"src": "assets/p2/fortkochi_2.webp", "w": 1400, "h": 1391}, {"src": "assets/p2/fortkochi_3.webp", "w": 1400, "h": 933}, {"src": "assets/p2/fortkochi_4.webp", "w": 1051, "h": 1400}, {"src": "assets/p2/fortkochi_5.webp", "w": 1400, "h": 933}, {"src": "assets/p2/fortkochi_6.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/fortkochi_7.webp", "w": 1400, "h": 630}], "jewtown": [{"src": "assets/p2/jewtown_0.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/jewtown_1.webp", "w": 933, "h": 1400}, {"src": "assets/p2/jewtown_2.webp", "w": 1400, "h": 987}, {"src": "assets/p2/jewtown_3.webp", "w": 1400, "h": 933}, {"src": "assets/p2/jewtown_4.webp", "w": 1400, "h": 933}, {"src": "assets/p2/jewtown_5.webp", "w": 1400, "h": 886}], "kayak": [{"src": "assets/p2/kayak_0.webp", "w": 1400, "h": 856}, {"src": "assets/p2/kayak_1.webp", "w": 1400, "h": 941}, {"src": "assets/p2/kayak_2.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/kayak_3.webp", "w": 1050, "h": 1400}, {"src": "assets/p2/kayak_4.webp", "w": 1400, "h": 629}, {"src": "assets/p2/kayak_5.webp", "w": 1400, "h": 887}, {"src": "assets/p2/kayak_6.webp", "w": 1400, "h": 933}], "smoke": [{"src": "assets/p2/smk_0.webp", "w": 1600, "h": 1200}, {"src": "assets/p2/smk_1.webp", "w": 1200, "h": 1600}, {"src": "assets/p2/smk_2.webp", "w": 1600, "h": 1194}, {"src": "assets/p2/smk_3.webp", "w": 1587, "h": 1600}, {"src": "assets/p2/smk_4.webp", "w": 1600, "h": 1200}, {"src": "assets/p2/smk_5.webp", "w": 1600, "h": 1186}, {"src": "assets/p2/smk_6.webp", "w": 974, "h": 1400}, {"src": "assets/p2/smk_7.webp", "w": 1208, "h": 1600}, {"src": "assets/p2/smk_8.webp", "w": 816, "h": 892}], "seagull": [{"src": "assets/p2/seagull_0.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/seagull_1.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/seagull_2.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/seagull_3.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/seagull_4.webp", "w": 1360, "h": 766}, {"src": "assets/p2/seagull_5.webp", "w": 765, "h": 1020}, {"src": "assets/p2/seagull_6.webp", "w": 765, "h": 1020}, {"src": "assets/p2/seagull_7.webp", "w": 1360, "h": 1020}, {"src": "assets/p2/seagull_8.webp", "w": 1360, "h": 1020}], "francis": [{"src": "assets/p2/francis_0.webp", "w": 1360, "h": 1020}, {"src": "assets/p2/francis_1.webp", "w": 765, "h": 945}, {"src": "assets/p2/francis_2.webp", "w": 512, "h": 512}, {"src": "assets/p2/francis_3.webp", "w": 512, "h": 512}, {"src": "assets/p2/francis_4.webp", "w": 512, "h": 512}, {"src": "assets/p2/francis_5.webp", "w": 512, "h": 512}, {"src": "assets/p2/francis_6.webp", "w": 512, "h": 512}], "frenchtoast": [{"src": "assets/p2/frenchtoast_0.webp", "w": 765, "h": 1020}, {"src": "assets/p2/frenchtoast_1.webp", "w": 765, "h": 1020}, {"src": "assets/p2/frenchtoast_2.webp", "w": 765, "h": 1020}, {"src": "assets/p2/frenchtoast_3.webp", "w": 750, "h": 1000}, {"src": "assets/p2/frenchtoast_4.webp", "w": 1050, "h": 1400}, {"src": "assets/p2/frenchtoast_5.webp", "w": 680, "h": 453}, {"src": "assets/p2/frenchtoast_6.webp", "w": 680, "h": 453}, {"src": "assets/p2/frenchtoast_7.webp", "w": 750, "h": 1000}, {"src": "assets/p2/frenchtoast_8.webp", "w": 720, "h": 719}], "grand": [{"src": "assets/p2/grand_0.webp", "w": 1400, "h": 943}, {"src": "assets/p2/grand_1.webp", "w": 1280, "h": 853}, {"src": "assets/p2/grand_2.webp", "w": 1040, "h": 780}, {"src": "assets/p2/grand_3.webp", "w": 1400, "h": 933}, {"src": "assets/p2/grand_4.webp", "w": 1200, "h": 700}, {"src": "assets/p2/grand_5.webp", "w": 830, "h": 540}, {"src": "assets/p2/grand_6.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/grand_7.webp", "w": 1200, "h": 800}], "paragon": [{"src": "assets/p2/paragon_0.webp", "w": 1400, "h": 965}, {"src": "assets/p2/paragon_1.webp", "w": 1243, "h": 1400}, {"src": "assets/p2/paragon_2.webp", "w": 1280, "h": 848}, {"src": "assets/p2/paragon_3.webp", "w": 1200, "h": 800}, {"src": "assets/p2/paragon_4.webp", "w": 1400, "h": 860}, {"src": "assets/p2/paragon_5.webp", "w": 972, "h": 1296}, {"src": "assets/p2/paragon_6.webp", "w": 1040, "h": 588}], "ghee": [{"src": "assets/p2/ghee_0.webp", "w": 1400, "h": 1050}, {"src": "assets/p2/ghee_1.webp", "w": 683, "h": 512}], "coz": [{"src": "assets/p2/coz_0.webp", "w": 1400, "h": 788}, {"src": "assets/p2/coz_1.webp", "w": 1050, "h": 1400}, {"src": "assets/p2/coz_2.webp", "w": 1400, "h": 788}, {"src": "assets/p2/coz_3.webp", "w": 1050, "h": 1400}, {"src": "assets/p2/coz_4.webp", "w": 1400, "h": 804}, {"src": "assets/p2/coz_5.webp", "w": 1106, "h": 1400}, {"src": "assets/p2/coz_6.webp", "w": 1050, "h": 1400}]};
+const OURS = {
+  fortkochi: [{ src: 'assets/p2/us_fortkochi_0.webp', pos: '54% 50%' }],
+  francis: [{ src: 'assets/p2/us_francis_0.webp', pos: '50% 40%' }],
+  smoke: [{ src: 'assets/p2/us_smoke_0.webp', pos: '50% 45%' },
+          { src: 'assets/p2/us_smoke_1.webp', pos: '50% 50%' }],
+  seagull: [{ src: 'assets/p2/us_seagull_0.webp', pos: '55% 62%' }],
+  jewtown: [{ src: 'assets/p2/us_jewtown_0.webp', pos: '50% 62%' }],
+};
 const PIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
 const EXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
 const gq = q => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
@@ -343,6 +375,20 @@ PLACES.forEach(p => {
     strip.appendChild(b);
   });
   gal.appendChild(strip);
+  const us = OURS[p.id];
+  if (us) {
+    art.classList.add('has-ours');
+    if (us.length > 1) art.classList.add('ours-2');
+    us.forEach((u, i) => {
+      const box = el('div', 'ours' + (us.length > 1 && i === 0 ? ' left' : ''));
+      const b = el('button', 'pola'); b.type = 'button';
+      b.setAttribute('aria-label', `Aishwarya & Ishan at ${p.name}, photo ${i + 1}`);
+      const im = new Image(); im.src = u.src; im.alt = `Aishwarya & Ishan at ${p.name}`; im.loading = 'lazy'; im.style.objectPosition = u.pos || '50% 50%';
+      b.append(im);
+      b.addEventListener('click', () => openLB(p, i, us, true));
+      box.appendChild(b); gal.appendChild(box);
+    });
+  }
   if (photos.length > 1) {
     const prev = el('button', 'g-nav prev', '‹'); prev.setAttribute('aria-label', 'Previous photo');
     const next = el('button', 'g-nav next', '›'); next.setAttribute('aria-label', 'Next photo');
@@ -426,15 +472,15 @@ $('#tab-fk').onclick = () => showMap('fk');
 
 /* ---- lightbox ---- */
 const lb = $('#lb'), lbImg = $('#lb-img'), lbCap = $('#lb-cap');
-let lbPlace = null, lbI = 0, lastFocus = null;
+let lbPlace = null, lbI = 0, lastFocus = null, lbList = [], lbUs = false;
 function renderLB() {
-  const ph = PHOTOS[lbPlace.id][lbI];
-  lbImg.src = ph.src; lbImg.alt = `${lbPlace.name}, photo ${lbI + 1}`;
-  lbCap.textContent = `${lbPlace.name} · ${lbI + 1} / ${PHOTOS[lbPlace.id].length}`;
+  const ph = lbList[lbI];
+  lbImg.src = ph.src; lbImg.alt = lbUs ? `Aishwarya & Ishan at ${lbPlace.name}` : `${lbPlace.name}, photo ${lbI + 1}`;
+  lbCap.textContent = `${lbPlace.name} · ${lbI + 1} / ${lbList.length}`;
 }
-function openLB(p, i) { lastFocus = document.activeElement; lbPlace = p; lbI = i; renderLB(); lb.hidden = false; document.body.style.overflow = 'hidden'; $('#lb-x').focus(); }
+function openLB(p, i, list, us) { lastFocus = document.activeElement; lbPlace = p; lbI = i; lbList = list || PHOTOS[p.id]; lbUs = !!us; renderLB(); lb.hidden = false; document.body.style.overflow = 'hidden'; $('#lb-x').focus(); }
 function closeLB() { lb.hidden = true; document.body.style.overflow = ''; if (lastFocus) lastFocus.focus(); }
-function stepLB(d) { const n = PHOTOS[lbPlace.id].length; lbI = (lbI + d + n) % n; renderLB(); }
+function stepLB(d) { const n = lbList.length; lbI = (lbI + d + n) % n; renderLB(); }
 $('#lb-x').onclick = closeLB; $('#lb-p').onclick = () => stepLB(-1); $('#lb-n').onclick = () => stepLB(1);
 lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
 document.addEventListener('keydown', e => {
